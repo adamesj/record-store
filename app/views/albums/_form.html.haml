@@ -1,0 +1,32 @@
+= form_for [@category, @album], url: { action: "create" }, html: { class: 'new-album-form' } do |f|
+  - if @album.errors.any?
+    #error_explanation
+      %h2.text-center
+        = pluralize(@album.errors.count, 'error')
+        prohibited this album from being saved:
+      %ul
+      - @albums.errors.full_messages.each do |message|
+        %li
+          = message
+
+  .container
+    .row.justify-content-center
+      .col-xs-12.col-lg-6
+        .form-group
+          = f.label :title
+          = f.text_field :title, class: 'form-control'
+
+        .form-group
+          = f.label :description
+          = f.text_area :description, rows: 10, cols: 60, class: 'form-control'
+
+        .form-group
+          = f.label :image_url
+          = f.text_field :image_url, class: 'form-control'
+
+        .form-group
+          = f.label :price
+          = f.text_field :price, class: 'form-control'
+
+        .actions
+          = f.submit

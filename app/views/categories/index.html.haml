@@ -1,0 +1,9 @@
+- @categories.each do |category|
+  %article.product_category
+    %header
+      %h3= link_to category.name
+    .container
+      .products.row.justify-content-center
+        - category.products.each do |product|
+          .product.col
+            = link_to image_tag(product.image_url, class: "img-responsive", id: "album_cover"), category_product_path(category, product)
